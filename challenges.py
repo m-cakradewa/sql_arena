@@ -246,7 +246,7 @@ if "title_list" not in ss:
 def submit_entry(name,title,country,score,linkedin):
     url = st.secrets["supabase_url"]
     key = st.secrets["supabase_key"]
-    supabase: Client = create_client(url, key)
+    supabase = create_client(url, key)
     player = {
     "name": name,
     "title": title,
@@ -374,7 +374,7 @@ def check_my_progress():
     elif progress == "Leaderboards":
         url = st.secrets["supabase_url"]
         key = st.secrets["supabase_key"]
-        supabase: Client = create_client(url, key)
+        supabase = create_client(url, key)
         leaderboard = supabase.table("leaderboard").select("*").order("score", desc=True).execute()
         # leaderboard = pd.DataFrame(leaderboard.data)
         # st.dataframe(leaderboard)
