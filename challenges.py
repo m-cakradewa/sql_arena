@@ -7,8 +7,8 @@ import pyzipper
 import json
 from supabase import create_client, Client
 
-supabase_url = "https://bhcfoqscumdvvhiifndq.supabase.co"
-supabase_key = "sb_publishable_ySuQOmQOg2FkDWBeZtrYaw_7zSgY2qU"
+supabase_url = st.secrets.supabase_url
+supabase_key = st.secrets.supabase_key
 
 if "db" not in ss:
     ss.db = "ecommerce"
@@ -226,7 +226,7 @@ databases = ["ecommerce",
              "banking",
              "uber"]
 
-password = "heh"
+password = st.secrets.password
 
 def read_solutions(password):
     with pyzipper.AESZipFile("solutions.zip") as zf:
