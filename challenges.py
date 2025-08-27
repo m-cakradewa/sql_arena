@@ -277,6 +277,27 @@ titles_1.database = databases
 titles_1.title = list(titles_1_dict.values())
 titles_2 = pd.read_csv("achievements.csv")
 
+import streamlit as st
+
+def go_to_link_button(label: str, url: str, width: int = 30, height: int = 30):
+    st.markdown(f"""
+    <div style="text-align: center;">
+        <a href="{url}" target="_blank">
+            <button style="
+                width: {width}px;
+                height: {height}px;
+                background-color: #0a66c2;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
+            ">{label}</button>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+
 @st.dialog("Check My Progress")
 def check_my_progress():
     if "score_list" not in ss:
@@ -313,7 +334,6 @@ def check_my_progress():
         st.write("")
         st.write("")
         st.image("achievements_2.jpeg")
-
 
     if progress == "Score Card":
         if st.checkbox("View Score"):
@@ -360,18 +380,15 @@ def check_my_progress():
         # st.dataframe(leaderboard)
         for row in leaderboard.data:
             with st.container(border=1):
-                c1,c2,c3,c4 = st.columns(4)
-                c1.write(row["name"])
-                c2.write(row["title"])
-                c3.write(row["country"])
-                c4.write(row["score"])
-                st.write(row["linkedin"])
-            
+                c0,c1= st.columns([.8,5])
+                with c0:
+                    st.write("")
+                    go_to_link_button("in", row["linkedin"])
+                with c1:
+                    st.write("### *"+row["name"]+" (score: "+str(row["score"])+")*")
+                    st.write("*"+row["title"]+" from "+row["country"]+"*")
+                    
                 
-
-            st.write(row["name"], row["score"])
-        
-
 def check_answer(df_user,df_solution,db,n):
     if "scorecard_df" not in ss:
         ss["scorecard_df"] = pd.DataFrame(columns = ["database","challenge_number"])

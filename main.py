@@ -4,6 +4,7 @@ import pandas as pd
 import tutorial
 import challenges
 from streamlit import session_state as ss
+import time
 
 if "page" not in ss:
     ss.page = "tutorial"
@@ -16,6 +17,26 @@ def goto_challenges():
 
 if "db" not in ss:
     ss.db = "ecommerce"
+
+if "go" not in ss:
+    ss.go = True
+
+def stream_data(text):
+    for word in text.split(" "):
+        yield word + " "
+        time.sleep(.2)
+
+# text_title = "# ⚔️ S Q L - A R E N A ⚔️"
+text_title = "# 🛡️ S Q L - A R E N A 🛡️"
+_,ctitle,_ = st.columns([.8,3,.5])
+with ctitle:
+    if ss.go:
+        st.write_stream(stream_data(text_title))
+        ss.go = False
+    else:
+        st.write(text_title)
+st.write("")
+st.write("")
 with st. container(border=1):
     nav1,nav2 = st.columns(2, gap = "large")
     with nav1:
