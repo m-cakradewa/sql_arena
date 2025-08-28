@@ -383,7 +383,7 @@ def check_my_progress():
             with st.container(border=1):
                 c0,c1,cl= st.columns([.8,5,.8])
                 with c0:
-                    st.subeader(n)
+                    st.subheader(n)
                 with c1:
                     st.write("*"+row["name"]+" (score: "+str(row["score"])+")*")
                     st.caption("*"+row["title"]+"* | "+ row["country"])
