@@ -385,8 +385,9 @@ def check_my_progress():
                     st.write("")
                     go_to_link_button("in", row["linkedin"])
                 with c1:
-                    st.write("### *"+row["name"]+" (score: "+str(row["score"])+")*")
-                    st.write("*"+row["title"]+" from "+row["country"]+"*")
+                    st.write("*"+row["name"]+" (score: "+str(row["score"])+")*")
+                    st.caption("*"+row["title"]+"*")
+                    st.caption(row["country"])
                     
                 
 def check_answer(df_user,df_solution,db,n):
