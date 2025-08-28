@@ -381,14 +381,16 @@ def check_my_progress():
         n =1
         for row in leaderboard.data:
             with st.container(border=1):
-                c0,c1= st.columns([.8,5])
+                c0,c1,cl= st.columns([.8,5,.8])
                 with c0:
-                    st.write("")
-                    go_to_link_button("in", row["linkedin"])
+                    st.subeader(n)
                 with c1:
                     st.write("*"+row["name"]+" (score: "+str(row["score"])+")*")
-                    st.write("*"+row["title"]+"*")
-                    st.write(row["country"])
+                    st.caption("*"+row["title"]+"* | "+ row["country"])
+                with cl:
+                    st.write("")
+                    go_to_link_button("in", row["linkedin"])
+            n+=1
                     
                 
 def check_answer(df_user,df_solution,db,n):
