@@ -381,9 +381,9 @@ def check_my_progress():
         n =1
         for row in leaderboard.data:
             with st.container(border=1):
-                c0,c1,cl= st.columns([.8,5,.8])
+                c0,c1,cl= st.columns([.5,5,.8])
                 with c0:
-                    st.subheader(n)
+                    st.header(n)
                 with c1:
                     st.write("*"+row["name"]+" (score: "+str(row["score"])+")*")
                     st.caption("*"+row["title"]+"* | "+ row["country"])
