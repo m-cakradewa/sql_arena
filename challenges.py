@@ -378,6 +378,7 @@ def check_my_progress():
         leaderboard = supabase.table("leaderboard").select("*").order("score", desc=True).execute()
         # leaderboard = pd.DataFrame(leaderboard.data)
         # st.dataframe(leaderboard)
+        n =1
         for row in leaderboard.data:
             with st.container(border=1):
                 c0,c1= st.columns([.8,5])
@@ -386,8 +387,8 @@ def check_my_progress():
                     go_to_link_button("in", row["linkedin"])
                 with c1:
                     st.write("*"+row["name"]+" (score: "+str(row["score"])+")*")
-                    st.caption("*"+row["title"]+"*")
-                    st.caption(row["country"])
+                    st.write("*"+row["title"]+"*")
+                    st.write(row["country"])
                     
                 
 def check_answer(df_user,df_solution,db,n):
