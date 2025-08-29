@@ -472,6 +472,8 @@ def write_questions(db,n,t):
 
 def create_save_file(password):
     csv_buffer = io.StringIO()
+    if "scorecard_df" not in ss:
+        ss["scorecard_df"] = pd.DataFrame(columns = ["database","challenge_number"])
     ss["scorecard_df"].to_csv(csv_buffer, index = False)
     csv_data =csv_buffer.getvalue().encode("utf-8")
     
